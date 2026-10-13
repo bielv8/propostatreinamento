@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capacitação Digital | UFP's 1.03 e 1.08</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+  --bg-card: rgba(255,255,255,0.9);
+  --text-primary: #18181b;
+  --text-secondary: #52525b;
+  --text-tertiary: #71717a;
+  --accent: #dc2626;
+  --accent-light: #b91c1c;
+  --accent-dark: #991b1b;
+  --accent-glow: rgba(220,38,38,0.1);
+  --border: rgba(24,24,27,0.1);
+  --border-hover: rgba(24,24,27,0.2);
+  --surface-muted: #fafafa;
+  --shadow-card: 0 3px 12px rgba(24,24,27,0.045);
+  --green: #22c55e;
+  --blue: #3b82f6;
+  --purple: #a855f7;
+  --cyan: #06b6d4;
+  --yellow: #a16207;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  display: none;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.navbar-logo {
+  display: block;
+  width: 122px;
+  height: auto;
+  flex: 0 0 auto;
+  border-radius: 3px;
+}
+
+.navbar-brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  line-height: 1.3;
+}
+
+.navbar-title {
+  font-size: 0.88rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.navbar-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: 126px 0 84px;
+  background: linear-gradient(115deg, #fff 55%, #fff8f8 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+h1 {
+  max-width: 1000px;
+  font-size: clamp(2.5rem, 5vw, 4.35rem);
+  font-weight: 650;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+}
+
+h1 .accent { color: var(--accent); }
+
+.hero-desc {
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin-bottom: 28px;
+  line-height: 1.7;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s, border-color 0.2s;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 2px 5px rgba(185,28,28,0.16);
+}
+
+.btn-primary:hover {
+  background: var(--accent-light);
+  box-shadow: 0 4px 10px rgba(185,28,28,0.18);
+}
+
+.btn-secondary {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  border-color: var(--border-hover);
+  background: rgba(24,24,27,0.04);
+}
+
+.btn i { width: 18px; height: 18px; }
+
+/* ===== SECTIONS ===== */
+.section {
+  padding: 80px 0;
+  position: relative;
+}
+
+.section-header { margin-bottom: 32px; }
+
+.section-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+  background: #fff5f5;
+  border: 1px solid #f2dddd;
+  color: var(--accent-dark);
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+h2 {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.section-desc {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+  max-width: 680px;
+  line-height: 1.7;
+}
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 0 auto;
+  max-width: 90%;
+}
+
+/* ===== CARDS ===== */
+.card-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.card-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-top: 2px solid #d98282;
+  border-radius: 10px;
+  padding: 24px 22px;
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.card:hover {
+  border-color: var(--border-hover);
+  border-top-color: var(--accent);
+  box-shadow: 0 6px 18px rgba(24,24,27,0.07);
+  transform: translateY(-2px);
+}
+
+.card h3 {
+  font-size: 1.02rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.card p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.card ul li {
+  font-size: 0.83rem;
+  color: var(--text-secondary);
+  padding: 4px 0;
+  padding-left: 15px;
+  position: relative;
+}
+
+.card ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+  transform: translateY(-50%);
+  opacity: 0.75;
+}
+
+/* ===== STEPS ===== */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.step-card {
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 22px;
+  text-align: left;
+  box-shadow: var(--shadow-card);
+}
+
+.step-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid #e7bebe;
+  color: var(--accent-dark);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0 0 12px;
+}
+
+.step-card h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.step-card p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.step-time {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 3px 0;
+  color: var(--text-tertiary);
+  border-radius: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* ===== HIGHLIGHT BOX ===== */
+.highlight-box {
+  background: #fffafa;
+  border: 1px solid #f0dddd;
+  border-left: 3px solid #cf7777;
+  border-radius: 8px;
+  padding: 18px 22px;
+  margin-top: 24px;
+}
+
+.highlight-box strong { color: var(--accent-dark); }
+
+.highlight-box p,
+.highlight-box li {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.highlight-box ul {
+  list-style: none;
+  padding: 0;
+}
+
+.highlight-box ul li {
+  padding: 6px 0;
+  padding-left: 22px;
+  position: relative;
+}
+
+.highlight-box ul li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* ===== TABLE ===== */
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #fff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+th {
+  background: #f7f7f8;
+  color: var(--text-primary);
+  font-weight: 600;
+  text-align: left;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.8rem;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-secondary);
+  vertical-align: top;
+}
+
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: rgba(24,24,27,0.025); }
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 28px;
+  padding: 0 8px;
+  background: #fff5f5;
+  color: var(--accent-dark);
+  border: 1px solid #f2dddd;
+  border-radius: 5px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+/* ===== VIDEO SECTION ===== */
+.video-section { padding: 80px 0; position: relative; }
+
+.video-showcase {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.video-embed-wrapper {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #000;
+  aspect-ratio: 16/9;
+}
+
+.video-embed-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+.video-badge-float {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.96);
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  color: var(--accent-dark);
+  padding: 5px 12px;
+  border-radius: 5px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  pointer-events: none;
+}
+
+.video-badge-float i { width: 12px; height: 12px; }
+
+.video-info h2 { margin-bottom: 16px; }
+
+.video-features {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0;
+}
+
+.video-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+}
+
+.feat-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: #fff5f5;
+  border: 1px solid #f2dddd;
+  color: var(--accent);
+}
+
+.feat-icon i { width: 16px; height: 16px; }
+
+/* ===== PDF SECTION ===== */
+.pdf-showcase { max-width: 760px; }
+
+/* ===== RESOURCE LIBRARY ===== */
+.resource-card {
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 22px 24px;
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.resource-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 5px 14px rgba(24,24,27,0.06);
+}
+
+.resource-card h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+/* ===== TEMPLATE / CHECKLIST ===== */
+.checklist {
+  list-style: none;
+  padding: 0;
+}
+
+.checklist li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  transition: color 0.2s, opacity 0.2s;
+}
+
+.checklist li:last-child { border-bottom: none; }
+
+.check-box {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  border: 2px solid var(--border-hover);
+  flex-shrink: 0;
+  transition: all 0.3s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.check-box.checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.check-box.checked::after {
+  content: '✓';
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 38px 0;
+  margin-top: 40px;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 32px;
+}
+
+.footer-brand {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+
+.footer-sub {
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+  max-width: 400px;
+  line-height: 1.6;
+}
+
+.footer-prof { text-align: right; }
+
+.footer-prof-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.footer-prof-code {
+  font-size: 0.78rem;
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+
+/* ===== FADE-IN ===== */
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .card-grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .steps-grid { grid-template-columns: repeat(2, 1fr); }
+  .video-showcase { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .card-grid-2 { grid-template-columns: 1fr; }
+  .hero { padding: 112px 0 56px; }
+  .footer-inner { flex-direction: column; }
+  .footer-prof { text-align: left; }
+}
+
+@media (max-width: 520px) {
+  .card-grid-4, .steps-grid { grid-template-columns: 1fr; }
+  .container { padding: 0 16px; }
+  .section { padding: 48px 0; }
+  h1 { font-size: clamp(2.35rem, 11vw, 3.2rem); }
+  .hero { padding: 104px 0 52px; }
+  .section-header { margin-bottom: 26px; }
+  .navbar { padding: 0 16px; }
+  .navbar-logo { width: 92px; }
+  .navbar-brand { gap: 10px; }
+  .navbar-title { font-size: 0.8rem; }
+  .navbar-subtitle { font-size: 0.66rem; }
+}
+
+@media print {
+  body { background: #fff; color: #000; }
+  body::before { display: none; }
+  .navbar { display: none; }
+  .hero { padding-top: 30px; }
+  .card, .step-card, .highlight-box, .resource-card { border: 1px solid #ddd; background: #fff; box-shadow: none; }
+  h1, h2 { color: #000; }
+  .accent { color: #b91c1c !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <div class="navbar-brand">
+      <img class="navbar-logo" src="./logo-senai.png" alt="Logo SENAI">
+      <div class="navbar-brand-text">
+        <div class="navbar-title">Capacitação Digital</div>
+        <div class="navbar-subtitle">UFP's 1.03 e 1.08</div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="container hero-content">
+  <h1 class="fade-in">Ferramentas digitais<br>para o <span class="accent">dia a dia escolar</span></h1>
+    <p class="hero-desc fade-in">Encontros curtos para praticar tarefas do dia a dia: organizar arquivos, colaborar e participar de reuniões online com mais segurança.</p>
+
+    <div class="hero-cta fade-in">
+      <a href="#video-modelo" class="btn btn-primary"><i data-lucide="play"></i> Ver vídeo-aula modelo</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ===== 01. OBJETIVO E FORMATO ===== -->
+<div class="divider"></div>
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-number">01</div>
+      <h2>Objetivo e formato</h2>
+      <p class="section-desc">Cada encontro apresenta uma tarefa, demonstra como fazê-la e reserva alguns minutos para a equipe praticar.</p>
+    </div>
+    <div class="card-grid-4">
+      <article class="card fade-in">
+        <h3>Objetivo</h3>
+        <p>Dar autonomia para usar as ferramentas digitais com segurança e consistência no cotidiano.</p>
+      </article>
+      <article class="card fade-in">
+        <h3>Público</h3>
+        <p>Equipes administrativas, pedagógicas, coordenação, docentes e demais colaboradores.</p>
+      </article>
+      <article class="card fade-in">
+        <h3>Ritmo leve</h3>
+        <p>Uma reunião por semana, duração máxima de 15 minutos, com uma tarefa simples ao final.</p>
+      </article>
+      <article class="card fade-in">
+        <h3>Consulta contínua</h3>
+        <p>Gravações, guias em PDF e modelos ficam organizados em um espaço comum e acessível.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 02. TRILHAS ===== -->
+<div class="divider"></div>
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-number">02</div>
+      <h2>Trilhas de aprendizagem</h2>
+      <p class="section-desc">Organize os conteúdos em quatro trilhas. Os temas podem ser repetidos ou aprofundados conforme as dúvidas reais das equipes.</p>
+    </div>
+    <div class="card-grid-4">
+      <article class="card fade-in">
+        <h3>OneDrive</h3>
+        <p>Arquivos organizados, compartilhamento e colaboração em nuvem.</p>
+        <ul>
+          <li>Pastas por área e projeto</li>
+          <li>Compartilhamento e permissões</li>
+          <li>Sincronização e recuperação</li>
+          <li>Boas práticas de nomes e versões</li>
+        </ul>
+      </article>
+      <article class="card fade-in">
+        <h3>Microsoft Teams</h3>
+        <p>Comunicação, chamadas e reuniões integradas.</p>
+        <ul>
+          <li>Voice: chamadas e áudio</li>
+          <li>Calendário e convites</li>
+          <li>Compartilhamento de tela</li>
+          <li>Gravações (quando habilitadas)</li>
+        </ul>
+      </article>
+      <article class="card fade-in">
+        <h3>Zoom e Google Meet</h3>
+        <p>Participar e conduzir reuniões com confiança.</p>
+        <ul>
+          <li>Microfone, câmera e dispositivos</li>
+          <li>Entrar, agendar e convidar</li>
+          <li>Compartilhar tela</li>
+          <li>Controles do anfitrião</li>
+        </ul>
+      </article>
+      <article class="card fade-in">
+        <h3>Identidade visual</h3>
+        <p>Padronização e apresentação profissional.</p>
+        <ul>
+          <li>Templates de apresentação</li>
+          <li>Fundos virtuais institucionais</li>
+          <li>Foto de perfil do colaborador</li>
+          <li>Enquadramento e iluminação</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 03. MÉTODO ===== -->
+<div class="divider"></div>
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-number">03</div>
+      <h2>Método de aplicação semanal</h2>
+      <p class="section-desc">Uma tarefa por encontro: explicar, demonstrar e deixar tempo para praticar.</p>
+    </div>
+    <div class="steps-grid">
+      <article class="step-card fade-in">
+        <div class="step-num">1</div>
+        <h3>Contextualizar</h3>
+        <p>Apresentar uma situação real da rotina escolar e o benefício da ferramenta.</p>
+        <span class="step-time">2 min</span>
+      </article>
+      <article class="step-card fade-in">
+        <div class="step-num">2</div>
+        <h3>Demonstrar</h3>
+        <p>Compartilhar a tela e mostrar o procedimento do início ao fim.</p>
+        <span class="step-time">6 min</span>
+      </article>
+      <article class="step-card fade-in">
+        <div class="step-num">3</div>
+        <h3>Experimentar</h3>
+        <p>Participantes repetem a ação ou respondem a uma pergunta rápida.</p>
+        <span class="step-time">4 min</span>
+      </article>
+      <article class="step-card fade-in">
+        <div class="step-num">4</div>
+        <h3>Orientar</h3>
+        <p>Indicar o vídeo gravado, o PDF e a missão prática da semana.</p>
+        <span class="step-time">3 min</span>
+      </article>
+    </div>
+    <div class="highlight-box fade-in">
+      <strong>Importante:</strong> mantenha cada encontro focado em uma tarefa. Registre as dúvidas que exigirem mais tempo para responder depois.
+    </div>
+  </div>
+</section>
+
+<!-- ===== VÍDEO MODELO ===== -->
+<div class="divider"></div>
+<section class="video-section" id="video-modelo">
+  <div class="container">
+    <div class="section-header fade-in">
+      <h2>Vídeo-aula modelo</h2>
+    </div>
+    <div class="video-showcase fade-in">
+      <div class="video-embed-wrapper">
+        <div class="video-badge-float"><i data-lucide="video"></i> Vídeo-aula</div>
+        <iframe
+          src="https://drive.google.com/file/d/1XNg65uBDEfvHKoahKiZ-3wPOxQN8a-ME/preview"
+          allow="autoplay; encrypted-media"
+          allowfullscreen
+          loading="lazy"
+          title="Vídeo-aula modelo"
+        ></iframe>
+      </div>
+      <div class="video-info">
+        <h3 style="font-size:1.3rem;font-weight:600;margin-bottom:6px">Uma tarefa por vídeo</h3>
+        <p style="font-size:0.9rem;color:var(--text-secondary);margin-bottom:20px">A demonstração mostra a tela e explica cada etapa do procedimento.</p>
+        <ul class="video-features">
+          <li>
+            <span class="feat-icon"><i data-lucide="monitor"></i></span>
+            <span>Captação de tela com narração passo a passo</span>
+          </li>
+          <li>
+            <span class="feat-icon"><i data-lucide="clock"></i></span>
+            <span>Duração entre 3 e 8 minutos — direto ao ponto</span>
+          </li>
+          <li>
+            <span class="feat-icon"><i data-lucide="subtitles"></i></span>
+            <span>Legendas para acessibilidade e revisão silenciosa</span>
+          </li>
+          <li>
+            <span class="feat-icon"><i data-lucide="refresh-cw"></i></span>
+            <span>Disponível para rever a qualquer momento</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== GUIA EM PDF ===== -->
+<div class="divider"></div>
+<section class="section" id="pdf-guia">
+  <div class="container">
+    <div class="section-header fade-in">
+      <h2>Guia: compartilhar um arquivo no OneDrive</h2>
+      <p class="section-desc">Guia prático da segunda semana, com cuidados de acesso e conferência final.</p>
+    </div>
+    <div class="pdf-showcase">
+      <p class="section-desc" style="margin-bottom:20px">O guia inclui preparo, seis etapas, cuidados de segurança e uma lista de conferência.</p>
+      <a href="./modelo-guia-onedrive.pdf" class="btn btn-primary" download><i data-lucide="download"></i> Baixar guia em PDF</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 04. CRONOGRAMA ===== -->
+<div class="divider"></div>
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-number">04</div>
+      <h2>Cronograma sugerido</h2>
+      <p class="section-desc">Ciclo piloto de oito semanas. Ajuste a ordem conforme as ferramentas utilizadas por cada escola.</p>
+    </div>
+    <div class="table-wrapper fade-in">
+      <table>
+        <thead>
+          <tr><th>Semana</th><th>Tema do encontro (15 min)</th><th>Vídeo-aula gravada</th><th>PDF / prática</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="tag">01</span></td><td>OneDrive: organização de pastas e arquivos</td><td>Vídeo: organizando arquivos na prática</td><td>Guia de organização + criar/organizar uma pasta</td></tr>
+          <tr><td><span class="tag">02</span></td><td>OneDrive: compartilhar com segurança</td><td>Vídeo: links e permissões</td><td>Passo a passo de compartilhamento + revisar permissões</td></tr>
+          <tr><td><span class="tag">03</span></td><td>Teams: áudio, Voice e dispositivos</td><td>Vídeo: configuração inicial de áudio</td><td>Checklist de microfone e saída de som</td></tr>
+          <tr><td><span class="tag">04</span></td><td>Teams: calendário, convite e reunião</td><td>Vídeo: agendar e participar</td><td>Guia de calendário + simular um convite</td></tr>
+          <tr><td><span class="tag">05</span></td><td>Teams: compartilhar tela e recursos</td><td>Vídeo: condução de reunião</td><td>Checklist antes/durante/depois</td></tr>
+          <tr><td><span class="tag">06</span></td><td>Zoom: entrar, configurar e compartilhar</td><td>Vídeo: Zoom do zero</td><td>Guia rápido + testar câmera e microfone</td></tr>
+          <tr><td><span class="tag">07</span></td><td>Google Meet: agendar e participar</td><td>Vídeo: Meet na prática</td><td>Guia rápido + simular uma reunião</td></tr>
+          <tr><td><span class="tag">08</span></td><td>Templates, fundo virtual e foto de perfil</td><td>Vídeo: personalização profissional</td><td>Kit de modelos + atualizar perfil</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 05. BIBLIOTECA ===== -->
+<div class="divider"></div>
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-number">05</div>
+      <h2>Biblioteca de materiais</h2>
+      <p class="section-desc">Guarde os materiais por ferramenta e tema em uma pasta compartilhada.</p>
+    </div>
+    <div class="card-grid-2">
+      <article class="resource-card fade-in">
+        <h3>Vídeos gravados</h3>
+        <p>Gravações curtas com captura de tela e uma tarefa demonstrada.</p>
+      </article>
+      <article class="resource-card fade-in">
+        <h3>Guias em PDF</h3>
+        <p>Um procedimento por guia, com passos curtos e orientação de segurança.</p>
+      </article>
+      <article class="resource-card fade-in">
+        <h3>Templates e modelos</h3>
+        <p>Apresentações, convites e fundos virtuais aprovados pela instituição.</p>
+      </article>
+      <article class="resource-card fade-in">
+        <h3>Dúvidas frequentes</h3>
+        <p>Respostas curtas para problemas recorrentes, com data de atualização e responsável pelo suporte.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 06. CONVITE ===== -->
+<div class="divider"></div>
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-number">06</div>
+      <h2>Convite para o encontro</h2>
+      <p class="section-desc">Complete as informações e envie o convite pelo calendário da equipe.</p>
+    </div>
+    <article class="card fade-in" style="margin-top:16px">
+      <h3>Reunião rápida da equipe</h3>
+      <p><strong>Título:</strong> [Tema] — reunião rápida da equipe</p>
+      <p><strong>Objetivo:</strong> [resultado esperado em uma frase]</p>
+      <p><strong>Link da reunião:</strong> [inserir link institucional]</p>
+      <p><strong>Pauta:</strong> contexto · demonstração · teste · dúvidas e próximos passos</p>
+      <p><strong>Após a reunião:</strong> [link da gravação] · [link do PDF] · [missão prática]</p>
+    </article>
+  </div>
+</section>
+
+<!-- ===== 07. TEMPLATES VISUAIS ===== -->
+<div class="divider"></div>
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-number">07</div>
+      <h2>Templates, fundos e foto do colaborador</h2>
+      <p class="section-desc">Padronização visual para apresentações e reuniões online.</p>
+    </div>
+    <div class="card-grid-4">
+      <article class="card fade-in">
+        <h3>Apresentação institucional</h3>
+        <p>Modelo com capa, objetivo, pauta, conteúdo, encaminhamentos e encerramento.</p>
+      </article>
+      <article class="card fade-in">
+        <h3>Fundos virtuais</h3>
+        <p>Opções claras e discretas, com marca institucional quando aprovada.</p>
+      </article>
+      <article class="card fade-in">
+        <h3>Foto de perfil</h3>
+        <p>Imagem nítida, iluminação frontal, fundo simples e enquadramento do rosto.</p>
+      </article>
+      <article class="card fade-in">
+        <h3>Kit para download</h3>
+        <p>Versões editáveis e instruções de uso. Identificar modelo oficial e data.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 08. INDICADORES ===== -->
+<div class="divider"></div>
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-number">08</div>
+      <h2>Como medir se está funcionando</h2>
+      <p class="section-desc">Indicadores simples e checklist de implantação.</p>
+    </div>
+    <div class="card-grid-2">
+      <article class="card fade-in">
+        <h3>Indicadores simples</h3>
+        <ul>
+          <li>Participação nos encontros de 15 minutos</li>
+          <li>Acessos e visualizações dos vídeos</li>
+          <li>Downloads ou consultas aos PDFs</li>
+          <li>Conclusão da missão prática semanal</li>
+          <li>Redução das dúvidas repetidas sobre o tema</li>
+        </ul>
+      </article>
+      <article class="card fade-in">
+        <h3>Checklist de implantação</h3>
+        <ul class="checklist">
+          <li><div class="check-box" onclick="toggleCheck(this)"></div>Definir responsável pela trilha e calendário</li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div>Criar pasta central com permissões adequadas</li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div>Preparar vídeo e PDF de cada encontro</li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div>Validar procedimentos no ambiente institucional</li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div>Enviar convite fixo para encontros semanais</li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div>Recolher dúvidas e ajustar próximos temas</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 09. PRINCÍPIOS ===== -->
+<div class="divider"></div>
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-number">09</div>
+      <h2>Princípios importantes</h2>
+    </div>
+    <div class="highlight-box fade-in">
+      <ul>
+        <li>Priorizar procedimentos que resolvam problemas reais da rotina escolar.</li>
+        <li>Usar contas e arquivos de teste nas demonstrações; nunca exibir dados pessoais ou confidenciais.</li>
+        <li>Gravar apenas quando autorizado, informar os participantes e seguir as regras internas de privacidade.</li>
+        <li>Confirmar com a TI quais funções estão habilitadas por licença e política — especialmente chamadas, gravações e controles de reunião.</li>
+        <li>Revisar PDFs e vídeos sempre que a interface ou as regras internas mudarem.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">Sugestão de Capacitação Digital</div>
+        <div class="footer-sub">Encontros práticos com vídeos curtos e guias para consulta.</div>
+      </div>
+      <div class="footer-prof">
+        <div class="footer-prof-name">Professor Gabriel Eduardo</div>
+        <div class="footer-prof-code">UFP 1.03</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Lucide icons
+lucide.createIcons();
+
+// Checklist toggle
+function toggleCheck(el) {
+  el.classList.toggle('checked');
+  const li = el.closest('li');
+  if (el.classList.contains('checked')) {
+    li.style.textDecoration = 'line-through';
+    li.style.opacity = '0.5';
+  } else {
+    li.style.textDecoration = 'none';
+    li.style.opacity = '1';
+  }
+}
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+
+</body>
